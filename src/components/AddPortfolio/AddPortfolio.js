@@ -1,5 +1,16 @@
-import { InputBase, Button, Typography, makeStyles } from "@material-ui/core";
+import {
+  InputBase,
+  Button,
+  Typography,
+  makeStyles,
+  Container,
+  List,
+  Collapse,
+  ListItemIcon,
+  ListItemText,
+} from "@material-ui/core";
 import { useState } from "react";
+import Navbar from "../Navbar/Navbar";
 
 function AddPortfolio() {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -14,6 +25,11 @@ function AddPortfolio() {
   });
 
   const useStyles = makeStyles({
+    container: {
+      display: "flex",
+      justifyContent: "center",
+      paddingTop: "2rem",
+    },
     input: {
       color: "black",
       fontSize: "18px",
@@ -48,8 +64,9 @@ function AddPortfolio() {
         "radial-gradient(50% 50% at 50% 50%, #6096BA 0%, #302F4D 100%)",
       boxShadow: "0px 0px 8px 8px rgba(255, 255, 255, 0.25)",
       borderRadius: "25px",
-      width: "626px",
-      height: "652px",
+      //   width: "626px",
+      width: "38rem",
+      height: "38rem",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
@@ -61,11 +78,11 @@ function AddPortfolio() {
       },
     },
     form: {
-        width: "100%",
+      width: "100%",
     },
     registerFields: {
-        display: "flex",
-        flexDirection: "column",
+      display: "flex",
+      flexDirection: "column",
     },
     field: {
       display: "flex",
@@ -73,14 +90,25 @@ function AddPortfolio() {
       alignItems: "center",
     },
     fieldName: {
-        maxWidth: "50px",
+      maxWidth: "50px",
+      fontFamily: "Roboto",
+      fontWeight: "bold",
+      fontSize: "20px",
     },
     name: {
       display: "flex",
       justifyContent: "space-between",
     },
     totalCost: {
-        padding: "4.2rem 0rem"
+      padding: "4.2rem 0rem",
+      fontFamily: "Roboto",
+      fontWeight: "bold",
+      fontSize: "20px",
+    },
+    totalCostText: {
+      fontFamily: "Roboto",
+      fontWeight: "bold",
+      fontSize: "20px",
     },
     error: {
       color: "red",
@@ -91,31 +119,48 @@ function AddPortfolio() {
 
   const classes = useStyles();
 
+  const [open, setOpen] = useState(true);
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
   return (
     <div className="addPortfolio">
-      <div className={classes.card}>
-        <div className={classes.form}>
-          <form noValidate autoComplete="off" className="register-form">
-            <div className={classes.registerFields}>
-              <div className={classes.field}>
-                <span className={classes.fieldName}>Name</span>
+      <Navbar />
+      <Container className={classes.container}>
+        <div className={classes.card}>
+          <div className={classes.form}>
+            <form noValidate autoComplete="off" className="register-form">
+              <div className={classes.registerFields}>
+                <div className={classes.field}>
+                  <span className={classes.fieldName}>Name</span>
 
-                <InputBase
-                    type="text"
-                    variant="standard"
-                    name="username"
-                    placeholder="Username"
-                    // value={form.username}
-                    // onChange={handleOnInputChange}
-                    className={classes.input}
-                    fullWidth
-                    inputProps={{ maxLength: 12 }}
-                />
-              </div>
-              <div className={classes.field}>
-                <span className={classes.fieldName}>Email</span>
+                  <InputBase
+                        type="text"
+                        variant="standard"
+                        name="username"
+                        placeholder="Username"
+                        // value={form.username}
+                        // onChange={handleOnInputChange}
+                        className={classes.input}
+                        fullWidth
+                        inputProps={{ maxLength: 12 }}
+                    />
+                </div>
+                <div className={classes.field}>
+                  <span className={classes.fieldName}>Email</span>
 
-                <InputBase
+                  <List
+                    sx={{
+                      width: "100%",
+                      maxWidth: 360,
+                      bgcolor: "background.paper",
+                    }}
+                    component="nav"
+                    aria-labelledby="enter amount"
+                  ></List>
+                  <InputBase
                     type="email"
                     variant="standard"
                     name="email"
@@ -124,12 +169,21 @@ function AddPortfolio() {
                     // onChange={handleOnInputChange}
                     className={classes.input}
                     fullWidth
-                />
-              </div>
-              <div className={classes.field}>
-                <span className={classes.fieldName}>Password</span>
+                  />
+                </div>
+                <div className={classes.field}>
+                  <span className={classes.fieldName}>Password</span>
 
-                <InputBase
+                  <List
+                    sx={{
+                      width: "100%",
+                      maxWidth: 360,
+                      bgcolor: "background.paper",
+                    }}
+                    component="nav"
+                    aria-labelledby="Enter Cost"
+                  ></List>
+                  <InputBase
                     type="password"
                     variant="standard"
                     name="password"
@@ -138,25 +192,24 @@ function AddPortfolio() {
                     // onChange={handleOnInputChange}
                     className={classes.input}
                     fullWidth
-                />
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className={classes.totalCost}>
-                <Typography>Total Cost Per Coin: </Typography>
-            </div>
+              <div className={classes.totalCost}>Total Cost Per Coin:</div>
 
-            <Button
-              className={classes.registerBtn}
-              // disabled={isProcessing}
-              // onClick={handleOnSubmit}
-              variant="contained"
-            >
-              {isProcessing ? "Loading..." : "Confirm"}
-            </Button>
-          </form>
+              <Button
+                className={classes.registerBtn}
+                // disabled={isProcessing}
+                // onClick={handleOnSubmit}
+                variant="contained"
+              >
+                {isProcessing ? "Loading..." : "Confirm"}
+              </Button>
+            </form>
+          </div>
         </div>
-      </div>
+      </Container>
     </div>
   );
 }
