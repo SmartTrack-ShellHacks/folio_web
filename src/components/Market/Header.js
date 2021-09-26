@@ -16,10 +16,12 @@ const Header = () =>{
 
     return(
         <>
-        {/* <div>
-            <span>Market is {label()}: <span className={color()}>{market}%</span></span>
-            <span>in the past 24 hours</span>
-        </div> */}
+        <div>
+            <span>Market is down 
+                {/* <span className={color()}>:{market}%</span> */}
+                </span>
+            {/* <span>in the past 24 hours</span> */}
+        </div>
         <form>
             <select id="currency" name="currency">
                 <option value="USD">USD</option>
