@@ -22,11 +22,11 @@ const Results = ({ payload }) => {
     sorInfo: {
       marginTop: "1rem",
       marginLeft: "1rem",
-      marginRight: "1rem",
+      width: "28rem",
     },
     sor: {
       display: "flex",
-      justifyContent: "space-between",
+      // justifyContent: "space-between",
       flexWrap: "wrap",
     },
     title: {

@@ -39,6 +39,7 @@ const Card = ({
   const useStyles = makeStyles({
     accordion: {
       width: "23rem",
+      background: "#fff",
     },
     icon: {
       width: "2.5rem",

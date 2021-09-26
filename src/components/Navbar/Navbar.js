@@ -35,13 +35,16 @@ const Navbar = () => {
       marginLeft: "1.5rem",
     },
     linkText: {
-      color: "#fcffeb",
+      color: "#5FB2FF",
       fontSize: "1.2rem",
       opacity: 0.8,
     },
     inactiveLinkText: {
-      color: "#cda2ab",
+      color: "#fcffeb",
       fontSize: "1.2rem",
+    },
+    none: {
+      textDecoration: "none",
     },
   });
 
@@ -60,7 +63,7 @@ const Navbar = () => {
       </div>
 
       <div className={classes.links}>
-        <Link to="/">
+        <Link to="/" className={classes.none}>
           <Typography
             variant="body1"
             className={location.pathname === "/" ? classes.linkText : classes.inactiveLinkText}
@@ -68,7 +71,7 @@ const Navbar = () => {
             Portfolio
           </Typography>
         </Link>
-        <Link to="/calculator">
+        <Link to="/calculator" className={classes.none}>
           <Typography
             variant="body1"
             className={location.pathname === "/calculator" ? classes.linkText : classes.inactiveLinkText}
