@@ -3,7 +3,8 @@ import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Portfolio from "../Portfolio/Portfolio";
 import AddPortfolio from "../AddPortfolio/AddPortfolio";
-import Market from "../Market/Market";
+import Market from '../Market/Market'
+import Socket from "../Socket/Socket";
 
 function App() {
   const [portfolio, setPortfolio] = useState({
@@ -88,6 +89,8 @@ function App() {
           <Route path="/" element={<Portfolio portfolio={portfolio} />} />
           <Route path="/addPortfolio" element={<AddPortfolio />} />
           <Route path="/portfolio" />
+          <Route path='/market' element={<Market/>} />
+          <Route path='/socket' element={<Socket/>} />
         </Routes>
       </BrowserRouter>
     </div>
