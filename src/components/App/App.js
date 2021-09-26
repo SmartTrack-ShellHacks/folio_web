@@ -2,7 +2,9 @@ import "./App.css";
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Portfolio from "../Portfolio/Portfolio";
+import AddPortfolio from "../AddPortfolio/AddPortfolio";
 import Market from '../Market/Market'
+
 function App() {
   const [portfolio, setPortfolio] = useState([
     {
@@ -84,8 +86,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Portfolio portfolio={portfolio} />} />
+          <Route path="/addPortfolio" element={ <AddPortfolio /> } />
           <Route path="/portfolio" />
-          <Route path="/addPortfolio" />
         </Routes>
       </BrowserRouter>
     </div>
