@@ -2,6 +2,39 @@ import React from "react";
 import { Accordion, AccordionSummary, AccordionDetails, Typography, Icon } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
+
+
+const useStyles = makeStyles({
+  accordion: {
+    width: "23rem",
+    background: "#fff",
+  },
+  icon: {
+    width: "2.5rem",
+    height: "2.5rem",
+  },
+  name: {
+    marginTop: ".5rem",
+    marginLeft: "1rem",
+  },
+  row: {
+    display: "flex",
+    justifyContent: "space-evenly",
+  },
+  details: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  small: {
+    fontSize: ".7rem",
+  },
+  items: {
+    width: "8rem",
+    textAlign: "center",
+  },
+});
+
+
 const Card = ({
   coin,
   symbol,
@@ -36,35 +69,7 @@ const Card = ({
     price = xrpPrice;
   }
 
-  const useStyles = makeStyles({
-    accordion: {
-      width: "23rem",
-      background: "#fff",
-    },
-    icon: {
-      width: "2.5rem",
-      height: "2.5rem",
-    },
-    name: {
-      marginTop: ".5rem",
-      marginLeft: "1rem",
-    },
-    row: {
-      display: "flex",
-      justifyContent: "space-evenly",
-    },
-    details: {
-      display: "flex",
-      flexDirection: "column",
-    },
-    small: {
-      fontSize: ".7rem",
-    },
-    items: {
-      width: "8rem",
-      textAlign: "center",
-    },
-  });
+
 
   const classes = useStyles();
 

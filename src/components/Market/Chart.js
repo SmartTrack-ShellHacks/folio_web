@@ -63,7 +63,7 @@ const calculatePro = async(currency_pair,exchanges,side,quantity)=>{
             console.log('help', last, change)
             cardInfo(last, change)
         }
-    }, [data, cardInfo])
+    }, [data])
 
     return (
         // <ResponsiveContainer width={150} height={90} className='container'>

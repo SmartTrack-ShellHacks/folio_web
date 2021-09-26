@@ -4,16 +4,16 @@ import Coins from "./Coins";
 import Navbar from "../Navbar/Navbar";
 import { Typography, makeStyles } from "@material-ui/core";
 
+const useStyles = makeStyles({
+  title: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: "2rem",
+    marginLeft: "2rem",
+    marginRight: "2rem",
+  },
+});
 const Market = () => {
-  const useStyles = makeStyles({
-    title: {
-      display: "flex",
-      justifyContent: "space-between",
-      marginTop: "2rem",
-      marginLeft: "2rem",
-      marginRight: "2rem",
-    },
-  });
 
   const classes = useStyles();
 

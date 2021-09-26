@@ -1,48 +1,49 @@
 import { Typography, makeStyles } from "@material-ui/core";
 import React from "react";
 
+const useStyles = makeStyles({
+  wrapper: {
+    marginTop: "1.5rem",
+    // marginLeft: "2rem",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
+  },
+  orderInfo: {
+    marginTop: "1rem",
+    marginLeft: "1rem",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+  },
+  sorInfo: {
+    marginTop: "1rem",
+    marginLeft: "1rem",
+    width: "28rem",
+  },
+  sor: {
+    display: "flex",
+    // justifyContent: "space-between",
+    flexWrap: "wrap",
+  },
+  title: {
+    marginTop: "1rem",
+    width: "100vw",
+    background: "#6096ba",
+    paddingLeft: "1rem",
+    textAlign: "center",
+    color: "#fcffeb",
+    fontWeight: "bold",
+    fontSize: "1.5rem",
+  },
+  text: {
+    fontSize: "1.2rem",
+  },
+});
+
 const Results = ({ payload }) => {
   let sor = payload.sor_orders;
 
-  const useStyles = makeStyles({
-    wrapper: {
-      marginTop: "1.5rem",
-      // marginLeft: "2rem",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-around",
-    },
-    orderInfo: {
-      marginTop: "1rem",
-      marginLeft: "1rem",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-start",
-    },
-    sorInfo: {
-      marginTop: "1rem",
-      marginLeft: "1rem",
-      width: "28rem",
-    },
-    sor: {
-      display: "flex",
-      // justifyContent: "space-between",
-      flexWrap: "wrap",
-    },
-    title: {
-      marginTop: "1rem",
-      width: "100vw",
-      background: "#6096ba",
-      paddingLeft: "1rem",
-      textAlign: "center",
-      color: "#fcffeb",
-      fontWeight: "bold",
-      fontSize: "1.5rem",
-    },
-    text: {
-      fontSize: "1.2rem",
-    },
-  });
 
   const classes = useStyles();
 

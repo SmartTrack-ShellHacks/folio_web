@@ -23,34 +23,35 @@ const images =[
     icon: "https://icons.iconarchive.com/icons/cjdowner/cryptocurrency/256/EOS-icon.png" 
 }]
 
+const useStyles = makeStyles({
+    card: {
+      width: "23rem",
+      margin: "2rem",
+      display: "flex",
+      justifyContent: "space-evenly",
+      alignItems: 'center'
+    },
+    column: {
+      display: "flex",
+      flexDirection: "column",
+    },
+    icon: {
+      width: "2.5rem",
+      height: "2.5rem",
+    },
+    symbol: {
+      fontSize: ".7rem",
+    },
+    chart: {
+        marginTop:'8rem'
+    },
+    items: {
+      width: "8rem",
+      textAlign: "center",
+    },
+});
+
 const Card = (props)=>{
-    const useStyles = makeStyles({
-        card: {
-          width: "23rem",
-          margin: "2rem",
-          display: "flex",
-          justifyContent: "space-evenly",
-          alignItems: 'center'
-        },
-        column: {
-          display: "flex",
-          flexDirection: "column",
-        },
-        icon: {
-          width: "2.5rem",
-          height: "2.5rem",
-        },
-        symbol: {
-          fontSize: ".7rem",
-        },
-        chart: {
-            marginTop:'8rem'
-        },
-        items: {
-          width: "8rem",
-          textAlign: "center",
-        },
-    });
     
     const classes = useStyles();
 
@@ -83,9 +84,9 @@ const Card = (props)=>{
         console.log(name)
     }, [coin])
 
-    useEffect(() => {
+    // useEffect(() => {
 
-    }, [])
+    // }, [])
 
     return (
         <MaterialCard className={classes.card}> 

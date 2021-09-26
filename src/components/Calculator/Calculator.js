@@ -14,47 +14,47 @@ import Results from "./Results";
 // import { costCalculator } from "../Utils/api";
 import { calculateOrder } from "../Utils/helper";
 
+const useStyles = makeStyles({
+  title: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: "2rem",
+    marginLeft: "2rem",
+    marginRight: "2rem",
+  },
+  wrapper: {
+    width: "100vw",
+    display: "flex",
+    justifyContent: "flex-start",
+    marginTop: "2rem",
+  },
+  form: {
+    width: "20vw",
+  },
+  select: {
+    width: "12vw",
+    marginLeft: "1rem",
+  },
+  group: {
+    display: "flex",
+    alignItems: "center",
+    marginLeft: "2rem",
+    justifyContent: "space-between",
+  },
+  btn: {
+    boxShadow: "0px 2px 4px rgba(85, 35, 221, 0.4)",
+    background: "linear-gradient(271.88deg, #3887FE 4.26%, #3BA0FF 51.37%, #5FB2FF 99.01%)",
+    color: "white",
+    fontSize: ".7rem",
+    marginLeft: "2rem",
+    fontWeight: "bold",
+  },
+  process: {
+    marginLeft: "2rem",
+    color: "#3887FE",
+  },
+});
 const Calculator = ({ btcPrice, ethPrice, adaPrice, dogePrice, uniPrice, eosPrice, usdtPrice, xrpPrice }) => {
-  const useStyles = makeStyles({
-    title: {
-      display: "flex",
-      justifyContent: "space-between",
-      marginTop: "2rem",
-      marginLeft: "2rem",
-      marginRight: "2rem",
-    },
-    wrapper: {
-      width: "100vw",
-      display: "flex",
-      justifyContent: "flex-start",
-      marginTop: "2rem",
-    },
-    form: {
-      width: "20vw",
-    },
-    select: {
-      width: "12vw",
-      marginLeft: "1rem",
-    },
-    group: {
-      display: "flex",
-      alignItems: "center",
-      marginLeft: "2rem",
-      justifyContent: "space-between",
-    },
-    btn: {
-      boxShadow: "0px 2px 4px rgba(85, 35, 221, 0.4)",
-      background: "linear-gradient(271.88deg, #3887FE 4.26%, #3BA0FF 51.37%, #5FB2FF 99.01%)",
-      color: "white",
-      fontSize: ".7rem",
-      marginLeft: "2rem",
-      fontWeight: "bold",
-    },
-    process: {
-      marginLeft: "2rem",
-      color: "#3887FE",
-    },
-  });
 
   const classes = useStyles();
 
@@ -105,7 +105,7 @@ const Calculator = ({ btcPrice, ethPrice, adaPrice, dogePrice, uniPrice, eosPric
     setProcessing(false);
   };
 
-  console.log("NUTZZ", payload);
+  // console.log("NUTZZ", payload);
 
   return (
     <div>
@@ -116,8 +116,8 @@ const Calculator = ({ btcPrice, ethPrice, adaPrice, dogePrice, uniPrice, eosPric
         </Typography>
       </div>
       <div className={classes.wrapper}>
-        <FormControl className={classes.form}>
           <div className={classes.wrapper}>
+          <FormControl className={classes.form}>
             <div className={classes.group}>
               <Typography variant="body1">Coin</Typography>
               <Select className={classes.select} value={calcCoin} label="coin" onChange={handleCoinInput}>
@@ -131,6 +131,8 @@ const Calculator = ({ btcPrice, ethPrice, adaPrice, dogePrice, uniPrice, eosPric
                 <MenuItem value="EOS">EOS</MenuItem>
               </Select>
             </div>
+            </FormControl>
+            <FormControl className={classes.form}>
             <div className={classes.group}>
               <Typography variant="body1">Quantity</Typography>
               <Input
@@ -143,18 +145,24 @@ const Calculator = ({ btcPrice, ethPrice, adaPrice, dogePrice, uniPrice, eosPric
                 fullWidth
               />
             </div>
+            </FormControl>
+
+            <FormControl className={classes.form}>
             <div className={classes.group}>
               <Typography variant="body1">Fiat</Typography>
               <Select className={classes.select} value="USD" label="fiat" onChange={handleFiatInput}>
                 <MenuItem value="USD">USD</MenuItem>
               </Select>
             </div>
+            </FormControl>
+
+            <FormControl className={classes.form}>
             <Button className={classes.btn} onClick={handleOnSubmit}>
               Go
             </Button>
+        </FormControl>
             {processing && <CircularProgress className={classes.process} />}
           </div>
-        </FormControl>
       </div>
       {Object.keys(payload).length > 0 && <Results payload={payload} />}
     </div>

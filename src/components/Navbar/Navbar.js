@@ -2,51 +2,51 @@ import { Icon, makeStyles, Typography } from "@material-ui/core";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 
+const useStyles = makeStyles({
+  nav: {
+    height: "3rem",
+    width: "100vw",
+    background: "#302f4d",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  icon: {
+    fontSize: "2rem",
+    color: "#fcffeb",
+  },
+  title: {
+    fontSize: "1.6rem",
+    color: "#fcffeb",
+  },
+  links: {
+    display: "flex",
+    alignItems: "center",
+    marginRight: "4rem",
+    justifyContent: "space-between",
+    width: "18rem",
+  },
+  headTitle: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "22rem",
+    marginLeft: "1.5rem",
+  },
+  linkText: {
+    color: "#5FB2FF",
+    fontSize: "1.2rem",
+    opacity: 0.8,
+  },
+  inactiveLinkText: {
+    color: "#fcffeb",
+    fontSize: "1.2rem",
+  },
+  none: {
+    textDecoration: "none",
+  },
+});
 const Navbar = () => {
-  const useStyles = makeStyles({
-    nav: {
-      height: "3rem",
-      width: "100vw",
-      background: "#302f4d",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-    },
-    icon: {
-      fontSize: "2rem",
-      color: "#fcffeb",
-    },
-    title: {
-      fontSize: "1.6rem",
-      color: "#fcffeb",
-    },
-    links: {
-      display: "flex",
-      alignItems: "center",
-      marginRight: "4rem",
-      justifyContent: "space-between",
-      width: "18rem",
-    },
-    headTitle: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      width: "22rem",
-      marginLeft: "1.5rem",
-    },
-    linkText: {
-      color: "#5FB2FF",
-      fontSize: "1.2rem",
-      opacity: 0.8,
-    },
-    inactiveLinkText: {
-      color: "#fcffeb",
-      fontSize: "1.2rem",
-    },
-    none: {
-      textDecoration: "none",
-    },
-  });
 
   const classes = useStyles();
 

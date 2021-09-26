@@ -3,35 +3,35 @@ import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import Card from "./Card";
 
+const useStyles = makeStyles({
+  portfolio: {
+    background: "#fff",
+  },
+  title: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: "2rem",
+    marginLeft: "2rem",
+    marginRight: "2rem",
+  },
+  icon: {
+    fontSize: "3rem",
+  },
+  container: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "3rem",
+  },
+  wrap: {
+    marginTop: "2rem",
+    marginBottom: "2rem",
+  },
+  black: {
+    textDecoration: "none",
+    color: "black",
+  },
+});
 function Portfolio({ portfolio, btcPrice, ethPrice, adaPrice, dogePrice, uniPrice, eosPrice, usdtPrice, xrpPrice }) {
-  const useStyles = makeStyles({
-    portfolio: {
-      background: "#fff",
-    },
-    title: {
-      display: "flex",
-      justifyContent: "space-between",
-      marginTop: "2rem",
-      marginLeft: "2rem",
-      marginRight: "2rem",
-    },
-    icon: {
-      fontSize: "3rem",
-    },
-    container: {
-      display: "flex",
-      justifyContent: "center",
-      marginTop: "3rem",
-    },
-    wrap: {
-      marginTop: "2rem",
-      marginBottom: "2rem",
-    },
-    black: {
-      textDecoration: "none",
-      color: "black",
-    },
-  });
 
   const classes = useStyles();
 
