@@ -11,7 +11,7 @@ import {
   CircularProgress,
 } from "@material-ui/core";
 import Results from "./Results";
-import { costCalculator } from "../Utils/api";
+// import { costCalculator } from "../Utils/api";
 import { calculateOrder } from "../Utils/helper";
 
 const Calculator = ({ btcPrice, ethPrice, adaPrice, dogePrice, uniPrice, eosPrice, usdtPrice, xrpPrice }) => {
