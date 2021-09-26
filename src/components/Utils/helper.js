@@ -31,6 +31,16 @@ const getTargetCurrencies = async (data) => {
   });
   return targetCurrencies;
 };
+const getFundingCurrencies = async (targetCurrency, data)=>{
+    if(!data){data = await getCurrencyPairs()}
+    
+    const fundingCurrencies = data.data.map((slug)=>{
+        if(slug.target_currency.slug===targetCurrency){
+            return slug.slug.target_currency.slug
+        }
+    })
+    return fundingCurrencies
+}
 
 const getSlugPair = (target, funding) =>{
     const slugPair = target+'-'+funding
@@ -45,19 +55,6 @@ const getBidsByCoin = async (coin, quantity, data) => {
 }
 
 
-const getSlugPair = (target, funding) => {
-  const slugPair = target + "-" + funding;
-  return slugPair.toUpperCase;
-};
-const getBidsByCoin = async (coin, quantity, data) => {
-  if (!data) {
-    data = await getCurrencyPairs();
-  }
-  const slugPair = getSlugPair(coin, "usd");
-  const exchanges = getExchanges(slugPair, data);
-  const costs = await costCalculator(slugPair, exchanges, "bids", quantity);
-  return costs;
-};
 
 
 const calculateOrder = async (target,funding, quantity, type, data) => {
