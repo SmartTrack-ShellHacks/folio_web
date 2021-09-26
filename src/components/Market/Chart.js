@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { getCurrencyPairs, costCalculator} from '../Utils/api'
-import { getCoinHistory} from '../Utils/helper'
+import { getCoinHistory, calculateOrder} from '../Utils/helper'
 
 
 const Chart = (props)=>{
-
+    
     const {coin}=props
     const sampleData = [{price:4, time:1},{price:1, time:2}]
 
@@ -31,7 +31,7 @@ const getPair = async(coin)=>{
         throw error
     }
 }
-const calculate = async(currency_pair,exchanges,side,quantity)=>{
+const calculatePro = async(currency_pair,exchanges,side,quantity)=>{
     try{
         const coinData = await costCalculator(currency_pair,
             exchanges,
@@ -48,9 +48,9 @@ const calculate = async(currency_pair,exchanges,side,quantity)=>{
     useEffect(()=>{
         getData(coin)
         // getPair()
-        calculate( "BTC-USD",
-          ["gdax", "gemini", "bitstamp"], "bids", 1,)
-
+        // calculate( "BTC-USD",
+        //   ["gdax", "gemini", "bitstamp"], "bids", 1,)
+        calculateOrder('btc', 'usd', 3)
     },[])
 
     useEffect(()=>{
