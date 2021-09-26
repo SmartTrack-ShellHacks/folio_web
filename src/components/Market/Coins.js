@@ -1,4 +1,5 @@
 import React from "react";
+
 import Card from './Card'
 import { makeStyles } from "@material-ui/styles";
 
@@ -28,3 +29,4 @@ const Coins = ({ portfolio, btcPrice, ethPrice, adaPrice, dogePrice, uniPrice, e
 }
 
 export default Coins;
+
