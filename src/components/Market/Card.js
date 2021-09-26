@@ -20,7 +20,7 @@ const images =[
     {symbol: "XRP",
     icon: "https://cdn.freelogovectors.net/wp-content/uploads/2021/01/xrp-icon-freelogovectors.net_.png"}, 
     {symbol: "EOS",
-    icon: "https://i.dlpng.com/static/png/6505264_preview.png" 
+    icon: "https://icons.iconarchive.com/icons/cjdowner/cryptocurrency/256/EOS-icon.png" 
 }]
 
 const Card = (props)=>{
