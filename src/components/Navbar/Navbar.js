@@ -25,7 +25,7 @@ const Navbar = () => {
       alignItems: "center",
       marginRight: "4rem",
       justifyContent: "space-between",
-      width: "12rem",
+      width: "18rem",
     },
     headTitle: {
       display: "flex",
@@ -79,7 +79,7 @@ const Navbar = () => {
             Calculator
           </Typography>
         </Link>
-        <Link to="/market">
+        <Link to="/market" className={classes.none}>
           <Typography
             variant="body1"
             className={location.pathname === "/market" ? classes.linkText : classes.inactiveLinkText}
