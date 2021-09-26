@@ -92,7 +92,7 @@ const Card = (props)=>{
         <MaterialCard className={classes.card}> 
             <img className={classes.icon} src={icon} alt={symbol}/>
             <div className={classes.column}>
-                <Typography variant="body1" className={classes.name}>{name}</Typography>
+                <Typography variant="body1" className={classes.name}>{name.charAt(0).toUpperCase()+name.slice(1)}</Typography>
                 <Typography variant="body1" className={classes.symbol}>{symbol}</Typography>
             </div>
             <Chart coin={coin} className={classes.chart} cardInfo={cardInfo}/>
