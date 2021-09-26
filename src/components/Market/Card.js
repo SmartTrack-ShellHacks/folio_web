@@ -1,6 +1,8 @@
-import React,{useEffect} from "react";
+import React,{useEffect, useState} from "react";
 import Chart from './Chart'
+import { Card as MaterialCard, Typography, Icon } from "@material-ui/core";
 import {getCoinId} from '../Utils/helper'
+import { makeStyles } from "@material-ui/styles";
 
 const images =[
     {symbol: "BTC",
@@ -22,14 +24,44 @@ const images =[
 }]
 
 const Card = (props)=>{
+    const useStyles = makeStyles({
+        card: {
+          width: "23rem",
+          margin: "2rem",
+          display: "flex",
+          justifyContent: "space-evenly",
+          alignItems: 'center'
+        },
+        column: {
+          display: "flex",
+          flexDirection: "column",
+        },
+        icon: {
+          width: "2.5rem",
+          height: "2.5rem",
+        },
+        symbol: {
+          fontSize: ".7rem",
+        },
+        chart: {
+            marginTop:'8rem'
+        },
+        items: {
+          width: "8rem",
+          textAlign: "center",
+        },
+    });
+    
+    const classes = useStyles();
+
 
     const {coin} = props
     const currency ='$'
-    const price=''
-    const change='5'
-    let icon = ''
+    const [price, setPrice] = useState(0.0)
+    const [change, setChange] = useState(0.0)
+    const [icon, setIcon] = useState('')
+    const [name, setName] = useState('')
     let symbol = coin
-    let name = ''
 
     const getCoinImage = (token) =>{
         token = token.toUpperCase()
@@ -39,28 +71,35 @@ const Card = (props)=>{
             }
         }
     }
+    const cardInfo = (newPrice, newChange )=>{
+        setPrice(newPrice)
+        setChange(newChange)
+    }
 
     useEffect(() => {
-        return () => {
-            icon = getCoinImage(coin)
-            symbol = coin
-            name = getCoinId(coin)
-        }
+        setIcon(getCoinImage(coin))
+        symbol = coin
+        setName(  getCoinId(coin))
+        console.log(name)
     }, [coin])
 
+    useEffect(() => {
+
+    }, [])
+
     return (
-        <>
-            <img className='icon' src={icon} alt={symbol}/>
-            <div>
-                <span className='name'>{name}</span>
-                <span className='symbol'>{symbol}</span>
+        <MaterialCard className={classes.card}> 
+            <img className={classes.icon} src={icon} alt={symbol}/>
+            <div className={classes.column}>
+                <Typography variant="body1" className={classes.name}>{name}</Typography>
+                <Typography variant="body1" className={classes.symbol}>{symbol}</Typography>
             </div>
-            <Chart coin={coin}/>
-            <div>
-                <span className='price'>{currency}{price}</span>
-                <span className='change'>{change}%</span>
+            <Chart coin={coin} className={classes.chart} cardInfo={cardInfo}/>
+            <div className={classes.column}>
+                <Typography variant="body1" className='price'>{currency}{price.toFixed(2)}</Typography>
+                <Typography variant="body1" className='change'>{change.toFixed(2)}%</Typography>
             </div>
-        </>
+        </MaterialCard>
     )
 }
 
