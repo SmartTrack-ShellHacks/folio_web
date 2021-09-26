@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+# Folio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created during ShellHacks 2021
 
-## Available Scripts
+## Inspiration
+We are all really interested in crypto and wanted to build a project around that. We got the pivoted to this idea after seeing all the data we had from the CoinRoutes API and it led to a project about tracking and receiving order information and smart order tracking to best inform users how to buy their desired crypto efficiently.
 
-In the project directory, you can run:
+## What it does
+The Portfolio section allows our users to track their trades and balances to see live how much they made or loss on a trade. It updates in real time using websockets and calculates their Portfolio worth for each supported coin.
+The Calculator allows the user to input the coin they wish to buy, the amount they want, and the funding currency (USD only for now). It then provides the user useful data on the order, like the average price and total fees they may incur. They also will see the Smart Order Tracking section which displays a spread of how to best purchase the coin by using a variety of trading venues to receive the best opportunity. This takes into account every exchange the particular coin is available on to give the most accurate SOR.
+The Market shows real time data and charts on the supported coins, and shows users how the market is behaving in the last 24 hours.
 
-### `npm start`
+## How we built it
+We built the whole app using React and took advantage of material UI for styling. We relied heavily on the CoinRoutes API to fetch all the necessary information and used their websockets to get live price data.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Challenges we ran into
+We had to pivot really late and started this app with only 14 hours left in the hackathon. Before we were attempting to build a smart contract app for project management, but progress was going too slow as we were are all new to building smart contracts and were learning as we went. We had very little to show for and needed to switch in order to get a project submitted in time and decided to do this project instead.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Accomplishments that we're proud of
+We are proud of getting the project done so quick and using only half the hackathon. Given more time i'm sure we can improve a lot, but with the obstacles we faced, we overcame them!
 
-### `npm test`
+## What we learned
+We learned working with websockets, using the CoinRoutes API, a bit of mobile development, and a bit about smart contracts.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## What's next for Folio - Crypto Tracker
+Definitely adding more features that we didn't have time for. We wanted to support more than just these 8 coins, and also allow for more funding currencies than just USD. We would also like to allow users to send an order directly to their Portfolio after using the calculator if they want to. We also would like to polish the UI since we focused more on functionality than design because of the time.
