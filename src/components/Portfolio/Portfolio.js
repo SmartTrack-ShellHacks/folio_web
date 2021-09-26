@@ -1,7 +1,8 @@
 import { Icon, Grid, Typography, makeStyles } from "@material-ui/core";
 import Navbar from "../Navbar/Navbar";
+import Card from "./Card";
 
-function Portfolio() {
+function Portfolio({ portfolio }) {
   const useStyles = makeStyles({
     title: {
       display: "flex",
@@ -12,6 +13,14 @@ function Portfolio() {
     },
     icon: {
       fontSize: "3rem",
+    },
+    container: {
+      display: "flex",
+      justifyContent: "center",
+      marginTop: "3rem",
+    },
+    wrap: {
+      marginTop: "3rem",
     },
   });
 
@@ -27,7 +36,21 @@ function Portfolio() {
         <Icon className={classes.icon}>add_circle_outline</Icon>
       </div>
 
-      <Grid container spacing={7}></Grid>
+      <Grid container className={classes.wrap}>
+        {portfolio.map((item) => (
+          <Grid className={classes.container} item xs={6}>
+            <Card
+              coin={item.coin}
+              symbol={item.symbol}
+              icon={item.icon}
+              cost={item.cost}
+              value={item.value}
+              percentGain={item.percentGain}
+              totalGain={item.totalGain}
+            />
+          </Grid>
+        ))}
+      </Grid>
     </div>
   );
 }
