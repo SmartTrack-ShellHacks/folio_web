@@ -31,7 +31,7 @@ const Card = (props)=>{
                 <span className='name'>{name}</span>
                 <span className='symbol'>{symbol}</span>
             </div>
-            {/* <Chart/> */}
+            <Chart coin={coin}/>
             <div>
                 <span className='price'>{currency}{price}</span>
                 <span className='change'>{change}%</span>

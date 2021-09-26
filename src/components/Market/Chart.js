@@ -1,20 +1,29 @@
 import React, {useState, useEffect} from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
-// import {getCoinData} from '../Utils/api'
+import {getCoinData, getCurrencyPairs} from '../Utils/api'
 
 
 const Chart = (props)=>{
 
     const {coin}=props
+    const sampleData = [{price:4},{price:1}]
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState(sampleData)
     const [color, setColor] = useState('')
 
 const getData = async(coin)=>{
     try{
-        // const coinData = getCoinData(coin) 
-        const coinData = [coin ]
+        const coinData = await getCoinData(coin) 
+        console.log(coinData)
         setData(coinData)
+    }catch(error){
+        throw error
+    }
+}
+const getPair = async(coin)=>{
+    try{
+        const coinData = await getCurrencyPairs() 
+        console.log('deez',coinData)
     }catch(error){
         throw error
     }
@@ -23,10 +32,13 @@ const getData = async(coin)=>{
 
     useEffect(()=>{
         getData(coin)
+        getPair()
+
     },[])
 
     useEffect(()=>{
-        if(data[data.length].price>data[0].price){
+        console.log('data',data )
+        if(data[data.length-1].price>data[0].price){
             setColor('green')
         }else setColor('red')
     }, [data])

@@ -1,20 +1,23 @@
-const baseURL = 'https://coinroutes.com'
-const apiToken = ''
+import axios from "axios";
+require("dotenv").config();
+
+const baseURL = 'https://staging.coinroutes.com'
+const apiToken = process.env.REACT_APP_KEY || ''
 const priceSocketURL = 'api/streaming/real_price'
 const cbboSocketURL = 'api/streaming/cbbo'
 
 
 
 const request= async ({ endpoint, method = "GET", data = {}, params = {} })=> {
-    const url = `${this.remoteHostUrl}/${endpoint}`;
-    console.log("Health Check");
+    const url = `${baseURL}/${endpoint}`;
+    console.log("Health Check", apiToken);
 
     const headers = {
       "Content-Type": "application/json",
     };
-
+    
     if (apiToken) {
-      headers["Authorization"] = `Bearer ${apiToken}`;
+      headers["Authorization"] = `Token ${apiToken}`;
     }
 
     try {
@@ -23,7 +26,7 @@ const request= async ({ endpoint, method = "GET", data = {}, params = {} })=> {
     } catch (err) {
       console.error({ errorResponse: err.response });
       const message = err?.response?.data?.error?.message;
-      return { data: null, error: message || string(err) };
+      return { data: null, error: message || err };
     }
   }
 
@@ -53,9 +56,9 @@ const request1 = async({endpoint, method, body, token})=>{
         console.log('request', baseURL+endpoint)
       }
   }
-const  getCurrencyPairs = ()=>{
+const  getCurrencyPairs = async ()=>{
     const endpoint='/api/currency_pairs/'
-    const data = await this.request({
+    const data = await request({
         endpoint:endpoint,
         method:'GET',
     })
@@ -71,9 +74,9 @@ const  getCurrencyPairs = ()=>{
 //     "side": "bids",
 //     "quantity": 1
 // }
-const  costCalculator = (currency_pair, exchanges, side, quantity)=>{
+const  costCalculator = async (currency_pair, exchanges, side, quantity)=>{
     const endpoint = '/api/cost_calculator/'
-    const data = await this.request({
+    const data = await request({
         endpoint:endpoint,
         method:'POST',
         data:{
@@ -86,14 +89,17 @@ const  costCalculator = (currency_pair, exchanges, side, quantity)=>{
       return {data}
     }
 
+const getCoinData = async (coin)=>{
+  const data= [{price:3},{price:5} ]
+
+  return data
+}
 
 
 
 
-
-
-module.exports = {
-    getCurrencyPairs,
-    costCalculator
-
+export {
+  getCurrencyPairs,
+  costCalculator,
+  getCoinData
 }
