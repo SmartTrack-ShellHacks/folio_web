@@ -2,21 +2,9 @@ import { Icon, Grid, Typography, makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import Chart from "../Market/Chart";
 import Navbar from "../Navbar/Navbar";
-import { useState, useEffect } from "react";
 import Card from "./Card";
-import axios from "axios";
 
-function Portfolio({ portfolio }) {
-  const [price, setPrice] = useState(2);
-
-  useEffect(() => {
-    const getData = async () => {
-      const data = await axios.get("htps://rest.coinapi.io/v1/exchangerate/BTC/USD");
-      console.log(data);
-    };
-    getData();
-  }, []);
-
+function Portfolio({ portfolio, btcPrice, ethPrice, adaPrice, dogePrice, uniPrice, eosPrice, usdtPrice, xrpPrice }) {
   const useStyles = makeStyles({
     portfolio: {},
     title: {
@@ -70,22 +58,14 @@ function Portfolio({ portfolio }) {
                   ? localStorage.getItem(portfolio[item].coin + "Cost")
                   : 0
               }
-              value={
-                localStorage.getItem(portfolio[item].coin + "Amount")
-                  ? localStorage.getItem(portfolio[item].coin + "Amount") * price
-                  : 0
-              }
-              amountBought={
-                localStorage.getItem(portfolio[item].coin + "Amount")
-                  ? localStorage.getItem(portfolio[item].coin + "Amount")
-                  : 0
-              }
-              totalGain={
-                localStorage.getItem(portfolio[item].coin + "Cost")
-                  ? localStorage.getItem(portfolio[item].coin + "Amount") * price -
-                    localStorage.getItem(portfolio[item].coin + "Cost")
-                  : 0
-              }
+              btcPrice={btcPrice}
+              ethPrice={ethPrice}
+              adaPrice={adaPrice}
+              dogePrice={dogePrice}
+              uniPrice={uniPrice}
+              eosPrice={eosPrice}
+              usdtPrice={usdtPrice}
+              xrpPrice={xrpPrice}
             />
           </Grid>
         ))}

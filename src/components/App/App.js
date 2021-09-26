@@ -1,10 +1,38 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Portfolio from "../Portfolio/Portfolio";
 import AddPortfolio from "../AddPortfolio/AddPortfolio";
-import Market from '../Market/Market'
-import Socket from "../Socket/Socket";
+import Market from "../Market/Market";
+
+const ws = new WebSocket(
+  "wss://staging.coinroutes.com/api/streaming/cbbo/?token=6c634e1eacecc4801b000249287fbf923d5c8824",
+  []
+);
+const ws2 = new WebSocket(
+  "wss://staging.coinroutes.com/api/streaming/cbbo/?token=6c634e1eacecc4801b000249287fbf923d5c8824",
+  []
+);
+const ws3 = new WebSocket(
+  "wss://staging.coinroutes.com/api/streaming/cbbo/?token=6c634e1eacecc4801b000249287fbf923d5c8824",
+  []
+);
+const ws4 = new WebSocket(
+  "wss://staging.coinroutes.com/api/streaming/cbbo/?token=6c634e1eacecc4801b000249287fbf923d5c8824",
+  []
+);
+const ws5 = new WebSocket(
+  "wss://staging.coinroutes.com/api/streaming/cbbo/?token=6c634e1eacecc4801b000249287fbf923d5c8824",
+  []
+);
+const ws6 = new WebSocket(
+  "wss://staging.coinroutes.com/api/streaming/cbbo/?token=6c634e1eacecc4801b000249287fbf923d5c8824",
+  []
+);
+const ws7 = new WebSocket(
+  "wss://staging.coinroutes.com/api/streaming/cbbo/?token=6c634e1eacecc4801b000249287fbf923d5c8824",
+  []
+);
 
 function App() {
   const [portfolio, setPortfolio] = useState({
@@ -82,15 +110,143 @@ function App() {
     },
   });
 
+  const [btcPrice, setBtcPrice] = useState("");
+  const [ethPrice, setEthPrice] = useState("");
+  const [adaPrice, setAdaPrice] = useState("");
+  const [dogePrice, setDogePrice] = useState("");
+  const [uniPrice, setUniPrice] = useState("");
+  const [eosPrice, setEosPrice] = useState("");
+  const [xrpPrice, setXrpPrice] = useState("");
+  const [usdtPrice, setUsdtPrice] = useState(1);
+
+  ws.onopen = () => {
+    let requestMessage = {
+      currency_pair: "BTC-USD",
+      size_filter: 1,
+      sample: 0.5,
+    };
+    ws.send(JSON.stringify(requestMessage));
+  };
+  ws.addEventListener("message", async (message) => {
+    const data = await JSON.parse(message.data);
+    if (data.product === "BTC-USD") {
+      if (data && data.asks) setBtcPrice(data.asks[0].price);
+    }
+  });
+
+  ws2.onopen = () => {
+    let requestMessage = {
+      currency_pair: "ETH-USD",
+      size_filter: 1,
+      sample: 0.5,
+    };
+    ws2.send(JSON.stringify(requestMessage));
+  };
+  ws2.addEventListener("message", async (message) => {
+    const data = await JSON.parse(message.data);
+    if (data.product === "ETH-USD") {
+      if (data && data.asks) setEthPrice(data.asks[0].price);
+    }
+  });
+
+  ws3.onopen = () => {
+    let requestMessage = {
+      currency_pair: "ADA-USD",
+      size_filter: 1,
+      sample: 0.5,
+    };
+    ws3.send(JSON.stringify(requestMessage));
+  };
+  ws3.addEventListener("message", async (message) => {
+    const data = await JSON.parse(message.data);
+    if (data.product === "ADA-USD") {
+      if (data && data.asks) setAdaPrice(data.asks[0].price);
+    }
+  });
+
+  ws4.onopen = () => {
+    let requestMessage = {
+      currency_pair: "DOGE-USD",
+      size_filter: 1,
+      sample: 0.5,
+    };
+    ws4.send(JSON.stringify(requestMessage));
+  };
+  ws4.addEventListener("message", async (message) => {
+    const data = await JSON.parse(message.data);
+    if (data.product === "DOGE-USD") {
+      if (data && data.asks) setDogePrice(data.asks[0].price);
+    }
+  });
+
+  ws5.onopen = () => {
+    let requestMessage = {
+      currency_pair: "EOS-USD",
+      size_filter: 1,
+      sample: 0.5,
+    };
+    ws5.send(JSON.stringify(requestMessage));
+  };
+  ws5.addEventListener("message", async (message) => {
+    const data = await JSON.parse(message.data);
+    if (data.product === "EOS-USD") {
+      if (data && data.asks) setEosPrice(data.asks[0].price);
+    }
+  });
+
+  ws6.onopen = () => {
+    let requestMessage = {
+      currency_pair: "UNI-USD",
+      size_filter: 1,
+      sample: 0.5,
+    };
+    ws6.send(JSON.stringify(requestMessage));
+  };
+  ws6.addEventListener("message", async (message) => {
+    const data = await JSON.parse(message.data);
+    if (data.product === "UNI-USD") {
+      if (data && data.asks) setUniPrice(data.asks[0].price);
+    }
+  });
+
+  ws7.onopen = () => {
+    let requestMessage = {
+      currency_pair: "XRP-USD",
+      size_filter: 1,
+      sample: 0.5,
+    };
+    ws7.send(JSON.stringify(requestMessage));
+  };
+  ws7.addEventListener("message", async (message) => {
+    const data = await JSON.parse(message.data);
+    if (data.product === "XRP-USD") {
+      if (data && data.asks) setXrpPrice(data.asks[0].price);
+    }
+  });
+
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Portfolio portfolio={portfolio} />} />
+          <Route
+            path="/"
+            element={
+              <Portfolio
+                portfolio={portfolio}
+                btcPrice={btcPrice}
+                ethPrice={ethPrice}
+                adaPrice={adaPrice}
+                dogePrice={dogePrice}
+                uniPrice={uniPrice}
+                eosPrice={eosPrice}
+                usdtPrice={usdtPrice}
+                xrpPrice={xrpPrice}
+              />
+            }
+          />
           <Route path="/addPortfolio" element={<AddPortfolio />} />
-          <Route path="/portfolio" />
-          <Route path='/market' element={<Market/>} />
-          <Route path='/socket' element={<Socket/>} />
+          <Route path="/calculator" />
+          <Route path="/market" element={<Market />} />
         </Routes>
       </BrowserRouter>
     </div>
