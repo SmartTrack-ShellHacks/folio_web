@@ -38,9 +38,32 @@ const getFundingCurrencies = async (targetCurrency, data)=>{
     return fundingCurrencies
 }
 
+const getSlugPair = (target, funding) =>{
+    const slugPair = target+'-'+funding
+    return slugPair.toUpperCase
+}
+const getBidsByCoin = async (coin, quantity, data) => {
+    if(!data){data = await getCurrencyPairs()}
+    const slugPair = getSlugPair(coin, 'usd')
+    const exchanges = getExchanges(slugPair, data)
+    const costs = await costCalculator(slugPair,exchanges,'bids',quantity)
+    return costs
+}
+
+
+const calculateOrder = async (target,funding, quantity, type, data) => {
+    if(!data){data = await getCurrencyPairs()}
+    if(!type){type = 'bids'}
+    const slugPair = getSlugPair(target, funding)
+    const exchanges = getExchanges(slugPair, data)
+    const costs = await costCalculator(slugPair,exchanges,type,quantity)
+    return costs
+}
 
 export {
     getExchanges,
     getTargetCurrencies,
-    getFundingCurrencies
+    getFundingCurrencies,
+    getBidsByCoin,
+    calculateOrder
   }
