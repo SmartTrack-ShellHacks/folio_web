@@ -58,7 +58,7 @@ const Navbar = () => {
         <Icon className={classes.icon}>account_balance_wallet</Icon>
         <Typography variant="h4" className={classes.title}>
           {" "}
-          Folio - Web Crypto Tracker
+          Folio - Crypto Tracker
         </Typography>
       </div>
 
