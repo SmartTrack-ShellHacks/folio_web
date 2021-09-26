@@ -81,11 +81,10 @@ const getCoinId = (symbol) => {
         {symbol:'btc',coinId:'bitcoin'},{symbol:'eth',coinId:'ethereum'}, 
         {symbol:'ada',coinId:'cardano'},{symbol:'eos',coinId:'eos'},
         {symbol:'doge',coinId: 'dogecoin'},{symbol:'uni',coinId:'uniswap'}, 
-        {symbol:'usdt',coinId:'tether' },{symbol:'xrp',coinId:'xrp'} ]
+        {symbol:'usdt',coinId:'tether' },{symbol:'xrp',coinId:'ripple'} ]
     coins.forEach((coin)=>{
 
         if(coin.symbol===symbol) {
-            console.log('wtf', coin.coinId)
             coinId= coin.coinId
         }
     })
@@ -109,6 +108,7 @@ export {
     getFundingCurrencies,
     getBidsByCoin,
     calculateOrder,
-    getCoinHistory
+    getCoinHistory,
+    getCoinId
   }
 

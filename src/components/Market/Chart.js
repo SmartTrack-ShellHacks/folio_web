@@ -14,7 +14,7 @@ const Chart = (props)=>{
 
 const getData = async(coin)=>{
     try{
-        const resData = await getCoinHistory('btc') 
+        const resData = await getCoinHistory(coin) 
         const coinData = await resData.data.prices.map((data)=>{
             return {price:data[1], time:data[0]}
         })
@@ -50,14 +50,13 @@ const calculatePro = async(currency_pair,exchanges,side,quantity)=>{
         // getPair()
         // calculate( "BTC-USD",
         //   ["gdax", "gemini", "bitstamp"], "bids", 1,)
-        calculateOrder('btc', 'usd', 3)
+        // calculateOrder('btc', 'usd', 3)
     },[])
 
     useEffect(()=>{
-        console.log('data',data )
-        // if(data.price[data.length-1]>data[0].price){
-        //     setColor('green')
-        // }else 
+        if(data.price && data.price[data.length-1]>data[0].price){
+            setColor('green')
+        }else 
         setColor('red')
     }, [data])
 
