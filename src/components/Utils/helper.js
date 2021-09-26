@@ -6,16 +6,18 @@ import {
 
 const getExchanges = async (slugPair, data)=>{
     if(!data){data = await getCurrencyPairs()}
-    let slug={}
-    for(let i=0; i<data.data.length;i++){
-        if(data.data[i].slug===slugPair){
-            slug = data.data[i]
+    let slug={exchanges:[]}
+    data=data.data.data
+    for(let i=0; i<data.length;i++){
+        if(data[i].slug===slugPair){
+            slug = data[i]
             break;
         }
     }
     const exchanges = slug.exchanges.map((exchange)=>{
         return exchange.slug
     })
+
     return exchanges 
 }
 
@@ -41,7 +43,7 @@ const getFundingCurrencies = async (targetCurrency, data)=>{
 
 const getSlugPair = (target, funding) =>{
     const slugPair = target+'-'+funding
-    return slugPair.toUpperCase
+    return slugPair.toUpperCase()
 }
 const getBidsByCoin = async (coin, quantity, data) => {
     if(!data){data = await getCurrencyPairs()}
@@ -53,11 +55,17 @@ const getBidsByCoin = async (coin, quantity, data) => {
 
 
 const calculateOrder = async (target,funding, quantity, type, data) => {
+    console.log('calculating order')
     if(!data){data = await getCurrencyPairs()}
+    console.log('data',data)
     if(!type){type = 'bids'}
-    const slugPair = getSlugPair(target, funding)
-    const exchanges = getExchanges(slugPair, data)
+    console.log('type', type)
+    const slugPair = await getSlugPair(target, funding)
+    console.log('slug', slugPair)
+    const exchanges = await getExchanges(slugPair, data)
+    console.log('exchanges',exchanges)
     const costs = await costCalculator(slugPair,exchanges,type,quantity)
+    console.log('cost', costs )
     return costs
 }
 
