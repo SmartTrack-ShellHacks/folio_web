@@ -1,6 +1,5 @@
 import { Icon, Grid, Typography, makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import Chart from "../Market/Chart";
 import Navbar from "../Navbar/Navbar";
 import Card from "./Card";
 
