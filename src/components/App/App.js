@@ -88,6 +88,7 @@ function App() {
           <Route path="/" element={<Portfolio portfolio={portfolio} />} />
           <Route path="/addPortfolio" element={ <AddPortfolio /> } />
           <Route path="/portfolio" />
+          <Route path='/market' element={<Market/>} />
         </Routes>
       </BrowserRouter>
     </div>
