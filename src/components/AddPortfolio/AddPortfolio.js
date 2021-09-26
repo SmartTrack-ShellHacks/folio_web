@@ -129,7 +129,7 @@ function AddPortfolio() {
     localStorage.setItem(coinName + "Cost", cost);
 
     setIsProcessing(false);
-    navigate("/portfolio");
+    navigate("/");
   };
 
   const handleCoinInput = (event) => {

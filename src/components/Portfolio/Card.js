@@ -2,7 +2,40 @@ import React from "react";
 import { Accordion, AccordionSummary, AccordionDetails, Typography, Icon } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-const Card = ({ coin, symbol, icon, cost, value, amountBought, totalGain }) => {
+const Card = ({
+  coin,
+  symbol,
+  icon,
+  cost,
+  btcPrice,
+  ethPrice,
+  adaPrice,
+  dogePrice,
+  uniPrice,
+  eosPrice,
+  usdtPrice,
+  xrpPrice,
+}) => {
+  let price = 0;
+
+  if (coin === "Bitcoin") {
+    price = btcPrice;
+  } else if (coin === "Ethereum") {
+    price = ethPrice;
+  } else if (coin === "Cardano") {
+    price = adaPrice;
+  } else if (coin === "Dogecoin") {
+    price = dogePrice;
+  } else if (coin === "Uniswap") {
+    price = uniPrice;
+  } else if (coin === "EOS") {
+    price = eosPrice;
+  } else if (coin === "Tether") {
+    price = usdtPrice;
+  } else if (coin === "XRP") {
+    price = xrpPrice;
+  }
+
   const useStyles = makeStyles({
     accordion: {
       width: "23rem",
@@ -55,7 +88,9 @@ const Card = ({ coin, symbol, icon, cost, value, amountBought, totalGain }) => {
             </div>
             <div className={classes.items}>
               <Typography variant="body1" className={classes.name}>
-                {value + " USD"}
+                {localStorage.getItem(coin + "Amount")
+                  ? (localStorage.getItem(coin + "Amount") * price).toFixed(2) + " USD"
+                  : 0 + " USD"}
               </Typography>
               <Typography variant="body1" className={classes.small}>
                 Value
@@ -65,7 +100,9 @@ const Card = ({ coin, symbol, icon, cost, value, amountBought, totalGain }) => {
           <div className={classes.row}>
             <div className={classes.items}>
               <Typography variant="body1" className={classes.name}>
-                {amountBought + " " + symbol}
+                {localStorage.getItem(coin + "Amount")
+                  ? localStorage.getItem(coin + "Amount") + " " + symbol
+                  : 0 + " " + symbol}
               </Typography>
               <Typography variant="body1" className={classes.small}>
                 Owned
@@ -73,7 +110,10 @@ const Card = ({ coin, symbol, icon, cost, value, amountBought, totalGain }) => {
             </div>
             <div className={classes.items}>
               <Typography variant="body1" className={classes.name}>
-                {totalGain + " USD"}
+                {localStorage.getItem(coin + "Cost")
+                  ? (localStorage.getItem(coin + "Amount") * price - localStorage.getItem(coin + "Cost")).toFixed(2) +
+                    " USD"
+                  : 0 + " USD"}
               </Typography>
               <Typography variant="body1" className={classes.small}>
                 Total Gain

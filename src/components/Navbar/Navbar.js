@@ -65,15 +65,15 @@ const Navbar = () => {
             variant="body1"
             className={location.pathname === "/" ? classes.linkText : classes.inactiveLinkText}
           >
-            Market
+            Portfolio
           </Typography>
         </Link>
-        <Link to="/portfolio">
+        <Link to="/calculator">
           <Typography
             variant="body1"
-            className={location.pathname === "/" ? classes.inactiveLinkText : classes.linkText}
+            className={location.pathname === "/calculator" ? classes.linkText : classes.inactiveLinkText}
           >
-            Portfolio
+            Calculator
           </Typography>
         </Link>
       </div>
