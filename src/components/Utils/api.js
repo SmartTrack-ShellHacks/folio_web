@@ -95,11 +95,24 @@ const getCoinData = async (coin)=>{
   return data
 }
 
+const getHistoricalData = async(coin, days, interval, fiat) =>{
+  if(!fiat){fiat = 'usd'}
+  const options = {
+    method: 'GET',
+    url: `https://api.coingecko.com/api/v3/coins/${coin}/market_chart`,
+    params: {vs_currency: fiat, days: days, interval: interval},
+    headers: {'Content-Type': 'application/json'}
+  };
+  const data = await axios.request(options)
+  return data
+}
+
 
 
 
 export {
   getCurrencyPairs,
   costCalculator,
-  getCoinData
+  getCoinData,
+  getHistoricalData
 }

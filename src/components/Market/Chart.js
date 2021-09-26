@@ -1,20 +1,23 @@
 import React, {useState, useEffect} from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
-import {getCoinData, getCurrencyPairs, costCalculator} from '../Utils/api'
+import { getCurrencyPairs, costCalculator} from '../Utils/api'
+import { getCoinHistory, calculateOrder} from '../Utils/helper'
 
 
 const Chart = (props)=>{
-
+    
     const {coin}=props
-    const sampleData = [{price:4},{price:1}]
+    const sampleData = [{price:4, time:1},{price:1, time:2}]
 
     const [data, setData] = useState(sampleData)
     const [color, setColor] = useState('')
 
 const getData = async(coin)=>{
     try{
-        const coinData = await getCoinData(coin) 
-        console.log(coinData)
+        const resData = await getCoinHistory('btc') 
+        const coinData = await resData.data.prices.map((data)=>{
+            return {price:data[1], time:data[0]}
+        })
         setData(coinData)
     }catch(error){
         throw error
@@ -28,7 +31,7 @@ const getPair = async(coin)=>{
         throw error
     }
 }
-const calculate = async(currency_pair,exchanges,side,quantity)=>{
+const calculatePro = async(currency_pair,exchanges,side,quantity)=>{
     try{
         const coinData = await costCalculator(currency_pair,
             exchanges,
@@ -41,19 +44,21 @@ const calculate = async(currency_pair,exchanges,side,quantity)=>{
 }
 
 
+
     useEffect(()=>{
         getData(coin)
-        getPair()
-        calculate( "BTC-USD",
-          ["gdax", "gemini", "bitstamp"], "bids", 1,)
-
+        // getPair()
+        // calculate( "BTC-USD",
+        //   ["gdax", "gemini", "bitstamp"], "bids", 1,)
+        calculateOrder('btc', 'usd', 3)
     },[])
 
     useEffect(()=>{
         console.log('data',data )
-        if(data[data.length-1].price>data[0].price){
-            setColor('green')
-        }else setColor('red')
+        // if(data.price[data.length-1]>data[0].price){
+        //     setColor('green')
+        // }else 
+        setColor('red')
     }, [data])
 
     return (
