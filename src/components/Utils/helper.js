@@ -1,6 +1,7 @@
 import {
     getCurrencyPairs,
     costCalculator,
+    getHistoricalData
 } from './api'
 
 const getExchanges = async (slugPair, data)=>{
@@ -60,10 +61,39 @@ const calculateOrder = async (target,funding, quantity, type, data) => {
     return costs
 }
 
+const getCoinId = (symbol) => {
+    let coinId ='bitcoin'
+    const coins = [
+        {symbol:'btc',coinId:'bitcoin'},{symbol:'eth',coinId:'ethereum'}, 
+        {symbol:'ada',coinId:'cardano'},{symbol:'eos',coinId:'eos'},
+        {symbol:'doge',coinId: 'dogecoin'},{symbol:'uni',coinId:'uniswap'}, 
+        {symbol:'usdt',coinId:'tether' },{symbol:'xrp',coinId:'xrp'} ]
+    coins.forEach((coin)=>{
+
+        if(coin.symbol===symbol) {
+            console.log('wtf', coin.coinId)
+            coinId= coin.coinId
+        }
+    })
+    return coinId
+}
+
+
+const getCoinHistory = async(coin) =>{
+    const days = 7
+    const interval = 'hourly'
+    const fiat = 'usd'
+    const coinId = await getCoinId(coin)
+    const data = await getHistoricalData(coinId, days, interval, fiat )
+
+    return data
+};
+
 export {
     getExchanges,
     getTargetCurrencies,
     getFundingCurrencies,
     getBidsByCoin,
-    calculateOrder
+    calculateOrder,
+    getCoinHistory
   }
