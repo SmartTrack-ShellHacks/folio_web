@@ -1,33 +1,18 @@
-import {
-  InputBase,
-  Button,
-  Typography,
-  makeStyles,
-  Container,
-  List,
-  Collapse,
-  ListItemIcon,
-  ListItemText,
-} from "@material-ui/core";
+import { InputBase, Button, makeStyles, Container, Select, MenuItem } from "@material-ui/core";
 import { useState } from "react";
 import Navbar from "../Navbar/Navbar";
+import { useNavigate } from "react-router";
 
 function AddPortfolio() {
   const [isProcessing, setIsProcessing] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    username: "",
-    email: "",
-    password: "",
-    passwordConfirm: "",
-  });
+  const [coinName, setCoinName] = useState("");
+  const [amount, setAmount] = useState();
+  const [cost, setCost] = useState();
 
   const useStyles = makeStyles({
     container: {
       display: "flex",
-      justifyContent: "center",
+      justifyContent: "space-around",
       paddingTop: "2rem",
     },
     input: {
@@ -35,7 +20,8 @@ function AddPortfolio() {
       fontSize: "18px",
       backgroundColor: "white",
       borderRadius: "8px",
-      width: "243px",
+      border: "2px solid black",
+      width: "20rem",
       height: "52px",
       margin: "20px 0 20px 0",
       "@media (max-width: 1440px)": {
@@ -45,12 +31,10 @@ function AddPortfolio() {
     registerBtn: {
       marginTop: 20,
       marginBottom: 50,
-      borderRadius: "25px",
       boxShadow: "0px 2px 4px rgba(85, 35, 221, 0.4)",
       height: "64px",
       width: "189px",
-      background:
-        "linear-gradient(271.88deg, #3887FE 4.26%, #3BA0FF 51.37%, #5FB2FF 99.01%)",
+      background: "linear-gradient(271.88deg, #3887FE 4.26%, #3BA0FF 51.37%, #5FB2FF 99.01%)",
       color: "white",
       fontSize: "24px",
       fontWeight: "bold",
@@ -60,8 +44,8 @@ function AddPortfolio() {
       },
     },
     card: {
-      background:
-        "radial-gradient(50% 50% at 50% 50%, #6096BA 0%, #302F4D 100%)",
+      background: "#fff",
+      border: "3px solid #302f4d",
       boxShadow: "0px 0px 8px 8px rgba(255, 255, 255, 0.25)",
       borderRadius: "25px",
       //   width: "626px",
@@ -85,15 +69,17 @@ function AddPortfolio() {
       flexDirection: "column",
     },
     field: {
+      width: "40rem",
       display: "flex",
-      justifyContent: "space-around",
+      justifyContent: "space-evenly",
       alignItems: "center",
     },
     fieldName: {
-      maxWidth: "50px",
+      width: "10rem",
       fontFamily: "Roboto",
       fontWeight: "bold",
       fontSize: "20px",
+      textAlign: "right",
     },
     name: {
       display: "flex",
@@ -119,11 +105,46 @@ function AddPortfolio() {
 
   const classes = useStyles();
 
-  const [open, setOpen] = useState(true);
+  const navigate = useNavigate();
 
-  const handleClick = () => {
-    setOpen(!open);
+  const handleOnSubmit = async () => {
+    if (coinName.length < 1) {
+      alert("No coin entered");
+      return;
+    }
+
+    if (amount === undefined || amount <= 0) {
+      alert("Positive numbers only");
+      return;
+    }
+    if (cost === undefined || cost <= 0) {
+      alert("Positive numbers only");
+      return;
+    }
+
+    setIsProcessing(true);
+
+    localStorage.setItem("coin", coinName);
+    localStorage.setItem(coinName + "Amount", amount);
+    localStorage.setItem(coinName + "Cost", cost);
+
+    setIsProcessing(false);
+    navigate("/portfolio");
   };
+
+  const handleCoinInput = (event) => {
+    setCoinName(event.target.value);
+  };
+  const handleAmountInput = (event) => {
+    setAmount(event.target.value);
+  };
+  const handleCostInput = (event) => {
+    setCost(event.target.value);
+  };
+
+  console.log(coinName);
+  console.log(amount);
+  console.log(cost);
 
   return (
     <div className="addPortfolio">
@@ -134,74 +155,47 @@ function AddPortfolio() {
             <form noValidate autoComplete="off" className="register-form">
               <div className={classes.registerFields}>
                 <div className={classes.field}>
-                  <span className={classes.fieldName}>Name</span>
-
-                  <InputBase
-                        type="text"
-                        variant="standard"
-                        name="username"
-                        placeholder="Username"
-                        // value={form.username}
-                        // onChange={handleOnInputChange}
-                        className={classes.input}
-                        fullWidth
-                        inputProps={{ maxLength: 12 }}
-                    />
+                  <span className={classes.fieldName}>Enter Token:</span>
+                  <Select className={classes.input} value={coinName} label="coin" onChange={handleCoinInput}>
+                    <MenuItem value="Cardano">Cardano</MenuItem>
+                    <MenuItem value="Ethereum">Ethereum</MenuItem>
+                    <MenuItem value="Bitcoin">Bitcoin</MenuItem>
+                    <MenuItem value="Uniswap">Uniswap</MenuItem>
+                    <MenuItem value="Dogecoin">Dogecoin</MenuItem>
+                    <MenuItem value="Tether">Tether</MenuItem>
+                    <MenuItem value="XRP">XRP</MenuItem>
+                    <MenuItem value="EOS">EOS</MenuItem>
+                  </Select>
                 </div>
                 <div className={classes.field}>
-                  <span className={classes.fieldName}>Email</span>
-
-                  <List
-                    sx={{
-                      width: "100%",
-                      maxWidth: 360,
-                      bgcolor: "background.paper",
-                    }}
-                    component="nav"
-                    aria-labelledby="enter amount"
-                  ></List>
+                  <span className={classes.fieldName}>Amount:</span>
                   <InputBase
-                    type="email"
+                    type="number"
                     variant="standard"
-                    name="email"
-                    placeholder="Email"
-                    // value={form.email}
-                    // onChange={handleOnInputChange}
+                    name="amount"
+                    value={amount}
+                    onChange={handleAmountInput}
                     className={classes.input}
                     fullWidth
                   />
                 </div>
                 <div className={classes.field}>
-                  <span className={classes.fieldName}>Password</span>
-
-                  <List
-                    sx={{
-                      width: "100%",
-                      maxWidth: 360,
-                      bgcolor: "background.paper",
-                    }}
-                    component="nav"
-                    aria-labelledby="Enter Cost"
-                  ></List>
+                  <span className={classes.fieldName}>Cost:</span>
                   <InputBase
-                    type="password"
+                    type="number"
                     variant="standard"
-                    name="password"
-                    placeholder="Password"
-                    // value={form.password}
-                    // onChange={handleOnInputChange}
+                    name="cost"
+                    value={cost}
+                    onChange={handleCostInput}
                     className={classes.input}
                     fullWidth
                   />
                 </div>
               </div>
-
-              <div className={classes.totalCost}>Total Cost Per Coin:</div>
-
               <Button
                 className={classes.registerBtn}
-                // disabled={isProcessing}
-                // onClick={handleOnSubmit}
+                disabled={isProcessing}
+                onClick={handleOnSubmit}
                 variant="contained"
               >
                 {isProcessing ? "Loading..." : "Confirm"}

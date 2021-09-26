@@ -6,10 +6,9 @@ import AddPortfolio from "../AddPortfolio/AddPortfolio";
 import Market from '../Market/Market'
 import Socket from "../Socket/Socket";
 
-
 function App() {
-  const [portfolio, setPortfolio] = useState([
-    {
+  const [portfolio, setPortfolio] = useState({
+    Cardano: {
       coin: "Cardano",
       symbol: "ADA",
       icon: "https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png",
@@ -18,7 +17,7 @@ function App() {
       amountBought: 0,
       totalGain: 0,
     },
-    {
+    Bitcoin: {
       coin: "Bitcoin",
       symbol: "BTC",
       icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png",
@@ -27,7 +26,7 @@ function App() {
       amountBought: 0,
       totalGain: 0,
     },
-    {
+    Dogecoin: {
       coin: "Dogecoin",
       symbol: "DOGE",
       icon: "https://seeklogo.com/images/D/dogecoin-logo-625F9D262A-seeklogo.com.png",
@@ -36,7 +35,7 @@ function App() {
       amountBought: 0,
       totalGain: 0,
     },
-    {
+    Uniswap: {
       coin: "Uniswap",
       symbol: "UNI",
       icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHsV6-0KW9vH6bz-UfpscApA9udwHtJbL16-ddXTOVauyNLjqXm5e94vNs0Bc-h2JyQig&usqp=CAU",
@@ -45,7 +44,7 @@ function App() {
       amountBought: 0,
       totalGain: 0,
     },
-    {
+    Tether: {
       coin: "Tether",
       symbol: "USDT",
       icon: "https://cdn.iconscout.com/icon/free/png-256/tether-441954.png",
@@ -54,7 +53,7 @@ function App() {
       amountBought: 0,
       totalGain: 0,
     },
-    {
+    XRP: {
       coin: "XRP",
       symbol: "XRP",
       icon: "https://cdn.freelogovectors.net/wp-content/uploads/2021/01/xrp-icon-freelogovectors.net_.png",
@@ -63,7 +62,7 @@ function App() {
       amountBought: 0,
       totalGain: 0,
     },
-    {
+    Ethereum: {
       coin: "Ethereum",
       symbol: "ETH",
       icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ethereum-icon-purple.svg/1200px-Ethereum-icon-purple.svg.png",
@@ -72,7 +71,7 @@ function App() {
       amountBought: 0,
       totalGain: 0,
     },
-    {
+    EOS: {
       coin: "EOS",
       symbol: "EOS",
       icon: "https://i.dlpng.com/static/png/6505264_preview.png",
@@ -81,14 +80,14 @@ function App() {
       amountBought: 0,
       totalGain: 0,
     },
-  ]);
+  });
 
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Portfolio portfolio={portfolio} />} />
-          <Route path="/addPortfolio" element={ <AddPortfolio /> } />
+          <Route path="/addPortfolio" element={<AddPortfolio />} />
           <Route path="/portfolio" />
           <Route path='/market' element={<Market/>} />
           <Route path='/socket' element={<Socket/>} />
