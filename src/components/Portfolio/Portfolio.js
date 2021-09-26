@@ -1,4 +1,5 @@
 import { Icon, Grid, Typography, makeStyles } from "@material-ui/core";
+import Chart from "../Market/Chart";
 import Navbar from "../Navbar/Navbar";
 import Card from "./Card";
 
@@ -45,7 +46,7 @@ function Portfolio({ portfolio }) {
               icon={item.icon}
               cost={item.cost}
               value={item.value}
-              percentGain={item.percentGain}
+              amountBought={item.amountBought}
               totalGain={item.totalGain}
             />
           </Grid>
