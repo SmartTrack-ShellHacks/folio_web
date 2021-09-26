@@ -7,9 +7,9 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Market/>
         <Routes>
-          <Route path="/" />
+          <Route path="/" element={<Portfolio />} />
+          <Route path="/portfolio" />
           <Route path="/addPortfolio" />
         </Routes>
       </BrowserRouter>
