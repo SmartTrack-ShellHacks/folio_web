@@ -76,6 +76,14 @@ const Navbar = () => {
             Calculator
           </Typography>
         </Link>
+        <Link to="/market">
+          <Typography
+            variant="body1"
+            className={location.pathname === "/market" ? classes.linkText : classes.inactiveLinkText}
+          >
+            Market
+          </Typography>
+        </Link>
       </div>
     </div>
   );
