@@ -1,8 +1,18 @@
 import { useState } from "react";
 import Navbar from "../Navbar/Navbar";
-import { MenuItem, Select, FormControl, Typography, Input, makeStyles, Button } from "@material-ui/core";
+import {
+  MenuItem,
+  Select,
+  FormControl,
+  Typography,
+  Input,
+  makeStyles,
+  Button,
+  CircularProgress,
+} from "@material-ui/core";
 import Results from "./Results";
 import { costCalculator } from "../Utils/api";
+import { calculateOrder } from "../Utils/helper";
 
 const Calculator = ({ btcPrice, ethPrice, adaPrice, dogePrice, uniPrice, eosPrice, usdtPrice, xrpPrice }) => {
   const useStyles = makeStyles({
@@ -40,6 +50,10 @@ const Calculator = ({ btcPrice, ethPrice, adaPrice, dogePrice, uniPrice, eosPric
       marginLeft: "2rem",
       fontWeight: "bold",
     },
+    process: {
+      marginLeft: "2rem",
+      color: "#3887FE",
+    },
   });
 
   const classes = useStyles();
@@ -48,6 +62,7 @@ const Calculator = ({ btcPrice, ethPrice, adaPrice, dogePrice, uniPrice, eosPric
   const [fiat, setFiat] = useState("USD");
   const [quantity, setQuantity] = useState();
   const [payload, setPayload] = useState({});
+  const [processing, setProcessing] = useState(false);
 
   const handleCoinInput = (event) => {
     setCalcCoin(event.target.value);
@@ -59,35 +74,38 @@ const Calculator = ({ btcPrice, ethPrice, adaPrice, dogePrice, uniPrice, eosPric
     setQuantity(event.target.value);
   };
 
-  const calculate = async (currency_pair, exchanges, side, quantity) => {
-    try {
-      const { data } = await costCalculator(currency_pair, exchanges, side, quantity);
-      console.log("nuts", data.data);
-      setPayload(data.data);
-    } catch (error) {
-      throw error;
-    }
-  };
+  // const calculate = async (currency_pair, exchanges, side, quantity) => {
+  //   try {
+  //     const { data } = await costCalculator(currency_pair, exchanges, side, quantity);
+  //     console.log("nuts", data.data);
+  //     setPayload(data.data);
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // };
 
   const handleOnSubmit = async () => {
+    setProcessing(true);
     if (calcCoin.length < 1) {
       alert("No coin entered");
+      setProcessing(false);
       return;
     }
 
     if (quantity === undefined || quantity <= 0) {
       alert("Positive numbers only");
+      setProcessing(false);
       return;
     }
 
-    // localStorage.setItem("calcCoin", calcCoin);
-    // localStorage.setItem("Quantity", quantity);
-    // localStorage.setItem("fiat", fiat);
-    let pair = calcCoin + "-" + fiat;
-    calculate(pair, ["gdax", "gemini", "bitstamp"], "bids", quantity);
+    // let pair = calcCoin + "-" + fiat;
+    // calculate(pair, ["gdax", "gemini", "bitstamp"], "bids", quantity);
+    let data = await calculateOrder(calcCoin, fiat, quantity);
+    setPayload(data.data.data);
+    setProcessing(false);
   };
 
-  console.log("deez", payload);
+  console.log("NUTZZ", payload);
 
   return (
     <div>
@@ -134,6 +152,7 @@ const Calculator = ({ btcPrice, ethPrice, adaPrice, dogePrice, uniPrice, eosPric
             <Button className={classes.btn} onClick={handleOnSubmit}>
               Go
             </Button>
+            {processing && <CircularProgress className={classes.process} />}
           </div>
         </FormControl>
       </div>

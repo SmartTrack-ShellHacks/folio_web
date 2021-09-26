@@ -5,7 +5,9 @@ import Card from "./Card";
 
 function Portfolio({ portfolio, btcPrice, ethPrice, adaPrice, dogePrice, uniPrice, eosPrice, usdtPrice, xrpPrice }) {
   const useStyles = makeStyles({
-    portfolio: {},
+    portfolio: {
+      background: "#fff",
+    },
     title: {
       display: "flex",
       justifyContent: "space-between",
