@@ -6,8 +6,8 @@ This project was created during ShellHacks 2021
 We are all really interested in crypto and wanted to build a project around that. We got the pivoted to this idea after seeing all the data we had from the CoinRoutes API and it led to a project about tracking and receiving order information and smart order tracking to best inform users how to buy their desired crypto efficiently.
 
 ## What it does
-The **Portfolio** section allows our users to track their trades and balances to see live how much they made or loss on a trade. It updates in real time using websockets and calculates their Portfolio worth for each supported coin. <br />
-The **Calculator** allows the user to input the coin they wish to buy, the amount they want, and the funding currency (USD only for now). It then provides the user useful data on the order, like the average price and total fees they may incur. They also will see the Smart Order Tracking section which displays a spread of how to best purchase the coin by using a variety of trading venues to receive the best opportunity. This takes into account every exchange the particular coin is available on to give the most accurate SOR. <br />
+The **Portfolio** section allows our users to track their trades and balances to see live how much they made or loss on a trade. It updates in real time using websockets and calculates their Portfolio worth for each supported coin. <br /><br />
+The **Calculator** allows the user to input the coin they wish to buy, the amount they want, and the funding currency (USD only for now). It then provides the user useful data on the order, like the average price and total fees they may incur. They also will see the Smart Order Tracking section which displays a spread of how to best purchase the coin by using a variety of trading venues to receive the best opportunity. This takes into account every exchange the particular coin is available on to give the most accurate SOR. <br /><br />
 The **Market** shows real time data and charts on the supported coins, and shows users how the market is behaving in the last 24 hours.
 
 ## How we built it
